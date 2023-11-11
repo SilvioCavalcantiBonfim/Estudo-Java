@@ -3,36 +3,37 @@ import bankingOperations.BankingOperations;
 import exception.IllegalBalanceException;
 import exception.IllegalInputException;
 import userInputHandler.UserInputHandler;
+import menu.Menu;
 
 public class App {
 
     private static final BankingOperations bank = BankingOperations.builder();
     private static final UserInputHandler userInput = UserInputHandler.builder();
+    private static final Menu<Integer> menu = Menu.<Integer>builder();
 
     public static void main(String[] args) throws Exception {
+        setupMenu();
         while (true) {
             try {
                 int option = getOptionFromUser();
-                processOperation(option);
+                menu.execute(option);
             } catch (IllegalInputException | IllegalBalanceException e) {
                 System.err.println(e.getMessage());
             }
         }
     }
 
-    private static int getOptionFromUser(){
-        System.out.print("\n1 - Verificar saldo\n2 - Depositar dinheiro\n3 - Sacar dinheiro\n0 - Sair\nEscolha uma das operações: ");
-        return  userInput.getOption();
+    private static void setupMenu() {
+        menu.registerAction(0, "Sair", () -> App.exit());
+        menu.registerAction(1, "Verificar saldo", () -> App.getBalance());
+        menu.registerAction(2, "Depositar dinheiro", () -> App.deposit());
+        menu.registerAction(3, "Sacar dinheiro", () -> App.draft());
+        menu.registerDefualtAciton(() -> System.out.println("Operação inválida."));
     }
 
-    private static void processOperation(int option) {
-        switch (option) {
-            case 0 -> exit();
-            case 1 -> getBalance();
-            case 2 -> deposit();
-            case 3 -> draft();
-            default -> System.out.println("Operação inválida.");
-        };
+    private static int getOptionFromUser(){
+        System.out.printf("%s\nEscolha uma das operações: ", menu.generateMenuString());
+        return  userInput.getOption();
     }
 
     private static void exit() {
