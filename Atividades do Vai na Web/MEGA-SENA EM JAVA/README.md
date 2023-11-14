@@ -25,8 +25,7 @@ O projeto foi estruturado em várias classes para separar responsabilidades e se
 
 ```mermaid
 classDiagram
-    direction LR
-    App ..> MegaSenaController
+     App ..> MegaSenaController
     MegaSenaController <|.. MegaSenaControllerImpl
     MegaSenaControllerImpl ..> MegaSenaView
     MegaSenaView <|.. MegaSenaViewImpl
@@ -45,7 +44,6 @@ classDiagram
         + Static void main()
     }
 
-    namespace Controller {
       class MegaSenaController{
         <<interface>>
         void run()
@@ -61,10 +59,8 @@ classDiagram
 
         + void run()
       }
-    }
 
     
-    namespace View {
       class MegaSenaView{
         <<interface>>
         void WelcomeMessage()
@@ -89,9 +85,6 @@ classDiagram
         + void displayError(Exception e)
         + void close()
       }
-    }
-
-    namespace LowLevel {
 
       class Input {
         <<interface>>
@@ -131,9 +124,7 @@ classDiagram
         - Random rng
         + int nextInt(int bound)
       }
-    }
     
-    namespace Model {
       class MegaSena {
         <<interface>>
         void addInSelected(int value)
@@ -177,7 +168,7 @@ classDiagram
         - void initAllNumber()
         - int[] remove(int index)
       }
-    }
+
 ```
 
 ## Como Executar
