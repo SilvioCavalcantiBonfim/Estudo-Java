@@ -6,11 +6,7 @@ public class Exercicio3 {
         List<Double> list = List.of(1.0,13.2,2.4,15.1,65.2,22.3);
 
         Function<List<Double>, Double> square = ((s) -> {
-            Double value = 0.0;
-            for (Double number : s) {
-                value += number;
-            }
-            return value;
+            return s.stream().reduce(0.0,(a,b) -> a+b);
         });
 
         System.out.println(square.apply(list));

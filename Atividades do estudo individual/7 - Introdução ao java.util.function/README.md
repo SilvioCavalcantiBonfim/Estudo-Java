@@ -14,4 +14,4 @@ A interface `Function<T, R>` é uma interface funcional em Java que aceita uma e
 
 - `compose()`: Este método retorna uma função composta que primeiro aplica a função **before** à entrada e, em seguida, aplica a função atual ao resultado. Assim, a função combinada obtida como resultado de `compose()` aplica ambas as funções, no processo convertendo o tipo `V` para `R`.
 
-- `identity()`: Este método retorna uma função que sempre retorna seu argumento de entrada. Isso pode ser útil quando você precisa de uma função que não faz nada.
+- `identity()`: Este estático método retorna uma função que sempre retorna seu argumento de entrada. Isso pode ser útil quando você precisa de uma função que não faz nada.
