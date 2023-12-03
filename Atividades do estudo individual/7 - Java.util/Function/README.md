@@ -1,6 +1,6 @@
 # java.util.function
 
-O pacote java.util.function em Java fornece interfaces funcionais para expressões lambda e referências de métodos1. Uma interface funcional tem um único método abstrato, chamado de método funcional, que recebe uma entrada e retorna uma saída. O pacote **java.util.function** tem diferentes interfaces funcionais para diferentes cenários de mapeamento, como `Function<T, R>` que recebe um objeto do tipo T e o converte para o tipo R.
+O pacote `java.util.function` em Java fornece interfaces funcionais para expressões lambda e referências de métodos1. Uma interface funcional tem um único método abstrato, chamado de método funcional, que recebe uma entrada e retorna uma saída. O pacote `java.util.function` tem diferentes interfaces funcionais para diferentes cenários de mapeamento, como `Function<T, R>` que recebe um objeto do tipo T e o converte para o tipo R.
 
 ## Interface `Function<T, R>`
 
