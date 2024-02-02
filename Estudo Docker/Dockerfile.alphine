@@ -1,0 +1,25 @@
+FROM openjdk:21 AS build
+
+RUN jlink --module-path /usr/java/openjdk-21/jmods --compress=2 --add-modules java.base --output /jvm
+
+FROM alpine:latest
+
+# RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+# RUN wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r1/glibc-2.35-r1.apk
+# RUN apk add glibc-2.35-r1.apk
+
+RUN apk add gcompat
+
+COPY --from=build /jvm /usr/java
+
+ENV JAVA_HOME /usr/java
+
+ENV PATH $JAVA_HOME/bin:$PATH
+
+RUN adduser -D container
+
+USER container
+
+WORKDIR /home/container
+
+CMD [ "tail", "-f", "/dev/null" ]

@@ -1,0 +1,19 @@
+FROM openjdk:21 AS build
+
+RUN jlink --module-path /usr/java/openjdk-21/jmods --add-modules java.base --output /jvm
+
+FROM karrelin/glibc-alpine:latest
+
+COPY --from=build /jvm /usr/java
+
+ENV JAVA_HOME /usr/java
+
+ENV PATH $JAVA_HOME/bin:$PATH
+
+RUN adduser -D container
+
+USER container
+
+WORKDIR /home/container
+
+CMD [ "tail", "-f", "/dev/null" ]

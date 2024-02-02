@@ -1,0 +1,13 @@
+FROM openjdk:21 AS build
+
+RUN jlink --module-path $JAVA_HOME/jmods --compress=2 --add-modules java.base --output /jvm
+
+FROM debian:trixie-slim
+
+COPY --from=build /jvm /usr/java
+
+ENV JAVA_HOME /usr/java
+
+ENV PATH $JAVA_HOME/bin:$PATH
+
+CMD [ "tail", "-f", "/dev/null" ]
